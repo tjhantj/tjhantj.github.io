@@ -123,7 +123,7 @@ main{padding-bottom:80px}
 @media(max-width:800px){.section-grid{grid-template-columns:1fr;gap:26px}.section-side{position:static;display:grid;grid-template-columns:auto 1fr;column-gap:14px;align-items:center}.section-index{margin:0}.section-title{grid-column:2}.section-desc{grid-column:2}}
 
 /* ABOUT */
-.about-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(230px,310px);gap:clamp(26px,5vw,56px);align-items:start}
+.about-grid{display:grid;grid-template-columns:minmax(230px,310px) minmax(0,1fr);gap:clamp(26px,5vw,56px);align-items:start}
 .about-copy{font-size:18px;line-height:1.8;margin:0;color:var(--ink)}
 .about-copy strong{font-weight:800}
 .link-row{display:flex;flex-wrap:wrap;gap:9px;margin-top:26px}
@@ -213,8 +213,6 @@ footer{border-top:1px solid var(--line);padding:32px 0 50px;color:var(--muted);f
       <p class="eyebrow">UNIST · Data Mining Lab</p>
       <h1>Taejoon Han</h1>
       <p class="hero-kicker"><span class="en">Graph Mining · Community Search · Cohesive Subgraph Discovery</span><span class="ko">그래프 마이닝 · 커뮤니티 탐색 · 응집성 부분그래프 탐색</span></p>
-      <p class="hero-copy en">Integrated M.S./Ph.D. student in Computer Science and Engineering at UNIST. My research explores cohesive subgraph discovery and community search, with recent work on bipartite networks, hypergraphs, and network stability.</p>
-      <p class="hero-copy ko">UNIST 컴퓨터공학과 석박사통합과정 학생입니다. 응집 부분그래프 탐색과 커뮤니티 탐색을 연구하며, 최근에는 이분 그래프·하이퍼그래프·네트워크 안정성 문제로 연구를 확장하고 있습니다.</p>
       <div class="hero-actions">
         <a class="btn primary" href="#publications"><span class="en">View publications</span><span class="ko">논문 보기</span> →</a>
         <a class="btn" href="mailto:taejoon.han@unist.ac.kr">Email</a>
@@ -233,6 +231,9 @@ footer{border-top:1px solid var(--line);padding:32px 0 50px;color:var(--muted);f
       <p class="section-desc"><span class="en">Background and research interests</span><span class="ko">연구 관심 분야와 배경</span></p>
     </div>
     <div class="about-grid reveal">
+      <figure class="photo-card">
+        <img src="photo.jpg" alt="Taejoon Han">
+      </figure>
       <div>
         <p class="about-copy en">I am an <strong>Integrated M.S./Ph.D. student at UNIST Computer Science and Engineering</strong>, in the Data Mining Lab led by Prof. Junghoon Kim. My research explores <strong>Graph Mining</strong>, <strong>Cohesive Subgraph Discovery</strong>, and <strong>Community Search</strong>, with recent work extending these questions to bipartite networks and hypergraphs. I completed my Bachelor's degree at UNIST (Computer Science and Engineering).</p>
         <p class="about-copy ko">저는 <strong>UNIST 컴퓨터공학과 석박사통합과정</strong> 학생으로, 김정훈 교수님의 Data Mining Lab에 소속되어 있습니다. <strong>그래프 마이닝</strong>, <strong>응집 부분그래프 탐색</strong>, <strong>커뮤니티 탐색</strong>을 연구하고 있으며, 최근에는 이분 그래프와 하이퍼그래프로 문제를 확장하고 있습니다. 학사 역시 UNIST 컴퓨터공학과에서 마쳤습니다.</p>
@@ -243,9 +244,6 @@ footer{border-top:1px solid var(--line);padding:32px 0 50px;color:var(--muted);f
           <a class="link-chip" href="cv.pdf" target="_blank" rel="noopener">CV ↗</a>
         </div>
       </div>
-      <figure class="photo-card">
-        <img src="photo.jpg" alt="Taejoon Han">
-      </figure>
     </div>
   </div>
 </section>
@@ -341,18 +339,17 @@ footer{border-top:1px solid var(--line);padding:32px 0 50px;color:var(--muted);f
       <p class="section-desc"><span class="en">Teaching assistantship and industry education</span><span class="ko">강의 조교 및 산업 교육 경험</span></p>
     </div>
     <div class="timeline reveal">
+      <div class="timeline-item"><div class="date">2026 July</div><div class="timeline-title">Research Paper Writing — Lecturer / TA — UNIST Novatus Graduate School </div></div>
+      <div class="timeline-item"><div class="date">2026 May</div><div class="timeline-title">Data Mining &amp; Machine Learning — Lecturer / TA — Nuclear Power &amp; Energy Specialized AI Professional Training Program</div></div>
       <div class="timeline-item"><div class="date">2026 Spring</div><div class="timeline-title">Teaching Assistant — Database Systems [CSE321], UNIST</div></div>
       <div class="timeline-item"><div class="date">2026 Spring</div><div class="timeline-title">Teaching Assistant — AI Toolkit for Industry [NOVA503], UNIST</div></div>
-      <div class="timeline-item"><div class="date">2025 Fall</div><div class="timeline-title">Teaching Assistant — Data Structures [CSE221], UNIST</div></div>
-
-      <div class="timeline-item"><div class="date">2024 Jun. · 2025 Jul.</div><div class="timeline-title">Data Mining &amp; Machine Learning — Lecturer / TA, LG Electronics DX &amp; Living DX Intensive Course</div></div>
-      <div class="timeline-item"><div class="date">2025 Feb.</div><div class="timeline-title">PBL — Personalized Washing Machine Course Recommendation — TA, LG Electronics DX &amp; Living DX Intensive Course</div></div>
-      <div class="timeline-item"><div class="date">2025 Aug. ~ Sep.</div><div class="timeline-title">PBL — Factory Power Consumption Forecasting — TA, LG Electronics DX &amp; Living DX Intensive Course</div></div>
-      <div class="timeline-item"><div class="date">2026 Jan.</div><div class="timeline-title">Prompt Engineering with Open-source LLMs — Lecturer / TA, LG Electronics DX &amp; Living DX Intensive Course</div></div>
       <div class="timeline-item"><div class="date">2026 Feb.</div><div class="timeline-title">PBL — BOM Price-change Automation with LLMs — TA, LG Electronics DX &amp; Living DX Intensive Course</div></div>
-
-      <div class="timeline-item"><div class="date">2026 May</div><div class="timeline-title">Data Mining &amp; Machine Learning — Lecturer / TA — Nuclear Power &amp; Energy Specialized AI Professional Training Program</div></div>
-      <div class="timeline-item"><div class="date">2026 July</div><div class="timeline-title">Research Paper Writing — Lecturer / TA — UNIST Novatus Graduate School </div></div>
+      <div class="timeline-item"><div class="date">2026 Jan.</div><div class="timeline-title">Prompt Engineering with Open-source LLMs — Lecturer / TA, LG Electronics DX &amp; Living DX Intensive Course</div></div>
+      <div class="timeline-item"><div class="date">2025 Fall</div><div class="timeline-title">Teaching Assistant — Data Structures [CSE221], UNIST</div></div>
+      <div class="timeline-item"><div class="date">2025 Aug. ~ Sep.</div><div class="timeline-title">PBL — Factory Power Consumption Forecasting — TA, LG Electronics DX &amp; Living DX Intensive Course</div></div>
+      <div class="timeline-item"><div class="date">2025 Jul.</div><div class="timeline-title">Data Mining &amp; Machine Learning — Lecturer / TA, LG Electronics DX &amp; Living DX Intensive Course</div></div>
+      <div class="timeline-item"><div class="date">2025 Feb.</div><div class="timeline-title">PBL — Personalized Washing Machine Course Recommendation — TA, LG Electronics DX &amp; Living DX Intensive Course</div></div>
+      <div class="timeline-item"><div class="date">2024 Jun.</div><div class="timeline-title">Data Mining &amp; Machine Learning — Lecturer / TA, LG Electronics DX &amp; Living DX Intensive Course</div></div>
     </div>
   </div>
 </section>
