@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Taejoon Han — Graph Mining &amp; Data Management</title>
+<meta name="description" content="Taejoon Han is an M.S. student at UNIST working on cohesive subgraph discovery, community search, and network stability.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#EDEFF3;
+    --paper-2:#E3E7ED;
+    --ink:#0F1A2B;
+    --muted:#5C6B80;
+    --line:#C7CFDA;
+    --accent:#3D2BD9;
+    --accent-soft:rgba(61,43,217,.10);
+
+    --display:"Bricolage Grotesque",system-ui,sans-serif;
+    --body:"Source Serif 4",Georgia,serif;
+    --mono:"IBM Plex Mono",ui-monospace,monospace;
+
+    --wrap:1120px;
+    --gap:clamp(56px,7vw,104px);
+  }
+
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--body);
+    font-size:17px;
+    line-height:1.62;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line);transition:color .18s,border-color .18s}
+  a:hover{color:var(--accent);border-color:var(--accent)}
+  a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+
+  .wrap{max-width:var(--wrap);margin:0 auto;padding:0 clamp(20px,5vw,48px)}
+
+  /* ---------- section scaffolding ---------- */
+  .band{padding-block:var(--gap);border-top:1px solid var(--line)}
+  .band:first-of-type{border-top:0}
+  .eyebrow{
+    font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--muted);margin:0 0 28px
+  }
+  .cols{display:grid;grid-template-columns:180px minmax(0,1fr);gap:clamp(24px,4vw,56px)}
+  @media(max-width:800px){.cols{grid-template-columns:1fr;gap:20px}.eyebrow{margin-bottom:14px}}
+
+  /* ---------- hero ---------- */
+  .hero{padding-block:clamp(48px,8vw,88px) var(--gap)}
+  .hero-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(300px,440px);gap:clamp(28px,5vw,64px);align-items:center}
+  @media(max-width:900px){.hero-grid{grid-template-columns:1fr}}
+
+  h1{
+    font-family:var(--display);font-weight:700;
+    font-size:clamp(48px,8.4vw,90px);line-height:.94;
+    letter-spacing:-.035em;margin:0 0 22px;
+  }
+  .role{font-size:clamp(18px,2.1vw,21px);max-width:34ch;margin:0 0 6px}
+  .affil{color:var(--muted);margin:0 0 30px;font-size:16.5px}
+  .affil em{font-style:normal;color:var(--ink)}
+
+  .links{display:flex;flex-wrap:wrap;gap:10px;font-family:var(--mono);font-size:13px;list-style:none;padding:0;margin:0}
+  .links a{
+    display:inline-block;padding:7px 13px;border:1px solid var(--line);border-radius:999px;
+    background:transparent;letter-spacing:.01em
+  }
+  .links a:hover{background:var(--accent-soft);border-color:var(--accent)}
+
+  /* ---------- graph figure ---------- */
+  figure.graph{margin:0}
+  .graph svg{width:100%;height:auto;display:block}
+  .edge{stroke:var(--line);stroke-width:1;transition:stroke .5s,stroke-width .5s,opacity .5s;opacity:.85}
+  .edge.on{stroke:var(--accent);stroke-width:1.7;opacity:1}
+  .node{fill:var(--paper);stroke:var(--muted);stroke-width:1.4;transition:fill .5s,stroke .5s,r .5s}
+  .node.on{fill:var(--accent);stroke:var(--accent)}
+  .caption{
+    font-family:var(--mono);font-size:11.5px;color:var(--muted);
+    letter-spacing:.05em;margin-top:16px;display:flex;gap:8px;align-items:baseline
+  }
+  .caption b{color:var(--accent);font-weight:500}
+
+  /* ---------- publications ---------- */
+  .sub{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:0 0 18px}
+  .sub+.pubs{margin-bottom:44px}
+  .pubs{list-style:none;margin:0;padding:0}
+  .pub{padding:20px 0;border-top:1px solid var(--line);display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px 24px;align-items:start}
+  .pub:last-child{border-bottom:1px solid var(--line)}
+  .pub-title{font-size:18.5px;font-weight:600;line-height:1.34;margin:0 0 6px}
+  .authors{color:var(--muted);font-size:15.5px;margin:0}
+  .authors b{color:var(--ink);font-weight:600}
+  .venue{
+    font-family:var(--mono);font-size:12px;white-space:nowrap;
+    padding:4px 10px;border:1px solid var(--accent);color:var(--accent);border-radius:3px;
+    background:var(--accent-soft)
+  }
+  .note{font-family:var(--mono);font-size:11.5px;color:var(--muted);display:block;margin-top:6px}
+  @media(max-width:640px){.pub{grid-template-columns:1fr}.venue{justify-self:start}}
+
+  /* ---------- generic entry lists ---------- */
+  .entries{list-style:none;margin:0;padding:0}
+  .entry{padding:16px 0;border-top:1px solid var(--line);display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 24px}
+  .entry:last-child{border-bottom:1px solid var(--line)}
+  .entry h4{margin:0;font-size:17.5px;font-weight:600;line-height:1.35}
+  .entry p{margin:4px 0 0;color:var(--muted);font-size:15.5px}
+  .when{font-family:var(--mono);font-size:12px;color:var(--muted);white-space:nowrap;padding-top:3px}
+  @media(max-width:640px){.entry{grid-template-columns:1fr}.when{padding-top:0}}
+
+  .prose{max-width:62ch;font-size:18.5px;margin:0}
+  .prose+.prose{margin-top:16px}
+
+  .duo{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,56px)}
+  @media(max-width:800px){.duo{grid-template-columns:1fr}}
+  .duo h3{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:400;margin:0 0 14px}
+  .plain{list-style:none;margin:0;padding:0}
+  .plain li{padding:12px 0;border-top:1px solid var(--line);font-size:16px}
+  .plain li:last-child{border-bottom:1px solid var(--line)}
+  .plain span{font-family:var(--mono);font-size:12px;color:var(--muted);display:block;margin-top:3px}
+
+  footer{border-top:1px solid var(--line);padding-block:40px 64px;font-family:var(--mono);font-size:12px;color:var(--muted);display:flex;flex-wrap:wrap;gap:10px 28px;justify-content:space-between}
+
+  @media(prefers-reduced-motion:reduce){
+    *{transition-duration:.01ms !important;animation-duration:.01ms !important}
+  }
+</style>
+</head>
+<body>
+
+<main>
+
+<!-- ============ HERO ============ -->
+<section class="hero wrap">
+  <div class="hero-grid">
+    <div>
+      <h1>Taejoon<br>Han</h1>
+      <p class="role">I look for the parts of a network that hold together — and prove they still hold at scale.</p>
+      <p class="affil">M.S. student in Computer Science and Engineering, <em>UNIST</em>. Advised by Prof. Junghoon Kim.</p>
+      <ul class="links">
+        <li><a href="mailto:taejoon.han@unist.ac.kr">taejoon.han@unist.ac.kr</a></li>
+        <li><a href="#" rel="me">Google Scholar</a></li>
+        <li><a href="#" rel="me">GitHub</a></li>
+        <li><a href="#">CV (PDF)</a></li>
+      </ul>
+    </div>
+
+    <figure class="graph">
+      <svg id="net" viewBox="0 0 440 380" role="img" aria-label="A network in which one densely connected group of nodes is highlighted at a time."></svg>
+      <figcaption class="caption">
+        <span>now highlighting</span><b id="cap">cohesive subgraph</b>
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ============ RESEARCH ============ -->
+<section class="band wrap">
+  <div class="cols">
+    <p class="eyebrow">Research</p>
+    <div>
+      <p class="prose">My work is on graph mining and data management: finding cohesive subgraphs, answering community search queries, and measuring how stable a network stays when its edges fail.</p>
+      <p class="prose">Recent projects extend these questions past the simple graph — into bipartite networks and hypergraphs, where the classic definitions of density stop being the right ones, and into billion-scale settings where an exact answer costs more than it is worth.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PUBLICATIONS ============ -->
+<section class="band wrap">
+  <div class="cols">
+    <p class="eyebrow">Publications</p>
+    <div>
+      <p class="sub">International conferences &amp; journals</p>
+      <ol class="pubs">
+        <li class="pub">
+          <div>
+            <p class="pub-title">LMSC: Local Sketch Modularity Optimisation for Size-Constrained Community Search in Networks</p>
+            <p class="authors">Dahee Kim, <b>Taejoon Han</b>, Kaiyu Feng, Junghoon Kim, Susik Yoon</p>
+            <span class="note">Poster</span>
+          </div>
+          <span class="venue">SIGMOD 2026</span>
+        </li>
+        <li class="pub">
+          <div>
+            <p class="pub-title">Efficient Locality-based Indexing for Cohesive Subgraphs Discovery in Hypergraph</p>
+            <p class="authors">Song Kim, Dahee Kim, <b>Taejoon Han</b>, Junghoon Kim, Hyun Ji Jeong, Jungeun Kim</p>
+          </div>
+          <span class="venue">EDBT 2026</span>
+        </li>
+        <li class="pub">
+          <div>
+            <p class="pub-title">From Bicliques to Biflexi Cliques: A New Era of Bipartite Subgraph Discovery</p>
+            <p class="authors"><b>Taejoon Han</b>*, Song Kim*, Woungjae Choo, Junghoon Kim</p>
+            <span class="note">* equal contribution</span>
+          </div>
+          <span class="venue">CIKM 2025</span>
+        </li>
+      </ol>
+
+      <p class="sub">Domestic conferences &amp; journals</p>
+      <ol class="pubs">
+        <li class="pub">
+          <div>
+            <p class="pub-title">NHSCAN: Node-based Hypergraph SCAN</p>
+            <p class="authors"><b>Taejoon Han</b>, Seungchan Choi, Minseok Kim, Hyewon Kim, Dahee Kim, Junghoon Kim</p>
+            <span class="note">Work-in-progress track</span>
+          </div>
+          <span class="venue">KDBC 2025</span>
+        </li>
+        <li class="pub">
+          <div>
+            <p class="pub-title">Weighted Structural Similarity for Density-Based Graph Clustering</p>
+            <p class="authors">Seungchan Choi*, <b>Taejoon Han</b>*, Dahee Kim, Hyewon Kim, Minseok Kim, Junghoon Kim</p>
+            <span class="note">Work-in-progress track · * equal contribution</span>
+          </div>
+          <span class="venue">KDBC 2025</span>
+        </li>
+        <li class="pub">
+          <div>
+            <p class="pub-title">Community Detection in Large-scale Attributed Networks via Joint Structural and Attribute Modularity Maximization</p>
+            <p class="authors">Deokhyun Kim*, <b>Taejoon Han</b>*, Junghoon Kim</p>
+            <span class="note">* equal contribution</span>
+          </div>
+          <span class="venue">JDBR 2025</span>
+        </li>
+        <li class="pub">
+          <div>
+            <p class="pub-title">Complex Network Stability: Exploring Comprehensive Anchored Edge s-Core</p>
+            <p class="authors"><b>Taejoon Han</b>*, Hyewon Kim*, Seongsik Hwang, Woocheol Shin, Junghoon Kim, Jaehyun Bhang, Hyeongi Hong</p>
+            <span class="note">* equal contribution</span>
+          </div>
+          <span class="venue">KDBC 2024</span>
+        </li>
+        <li class="pub">
+          <div>
+            <p class="pub-title">Community Detection Based on Ollivier-Ricci Curvature and Modularity</p>
+            <p class="authors">Dahee Kim*, Hyewon Kim*, <b>Taejoon Han</b>, Junghoon Kim</p>
+            <span class="note">Best Paper Award (Bronze) · * equal contribution</span>
+          </div>
+          <span class="venue">KDBC 2024</span>
+        </li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TEACHING ============ -->
+<section class="band wrap">
+  <div class="cols">
+    <p class="eyebrow">Teaching</p>
+    <ul class="entries">
+      <li class="entry">
+        <div>
+          <h4>Teaching Assistant — CSE321 Database Systems</h4>
+          <p>Department of Computer Science and Engineering, UNIST</p>
+        </div>
+        <span class="when">Spring 2026</span>
+      </li>
+      <li class="entry">
+        <div>
+          <h4>Teaching Assistant — NOVA503 AI Toolkit for Industry</h4>
+          <p>Department of Computer Science and Engineering, UNIST</p>
+        </div>
+        <span class="when">Spring 2026</span>
+      </li>
+      <li class="entry">
+        <div>
+          <h4>Teaching Assistant — CSE221 Data Structures</h4>
+          <p>Wrote the programming assignments on graph algorithms: Union-Find, graph construction, and Kruskal's minimum spanning tree.</p>
+        </div>
+        <span class="when">Fall 2025</span>
+      </li>
+      <li class="entry">
+        <div>
+          <h4>Lecturer / TA — LG Electronics DX &amp; Living DX Intensive Course</h4>
+          <p>Ran industry training for LG Electronics engineers on Python, data mining, machine learning, and applied LLMs. Taught Apriori, decision trees, random forests, k-means, and DBSCAN with hands-on Colab labs; mentored PBL projects on washing-machine course recommendation and factory power-consumption forecasting; deployed gpt-oss-20b on a lab server behind a custom web API for prompt-engineering workshops; built a tree-based BOM comparison pipeline with an LLM slide reader for part-cost change analysis.</p>
+        </div>
+        <span class="when">Jun 2024 – Feb 2026</span>
+      </li>
+      <li class="entry">
+        <div>
+          <h4>TA — Nuclear Power &amp; Energy Specialized AI Professional Training Program</h4>
+          <p>Hands-on session covering the full pipeline, from preprocessing with pandas to decision trees, k-means, and DBSCAN.</p>
+        </div>
+        <span class="when">May 2026</span>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ AWARDS + PATENTS ============ -->
+<section class="band wrap">
+  <div class="cols">
+    <p class="eyebrow">Awards &amp; patents</p>
+    <div class="duo">
+      <div>
+        <h3>Awards &amp; honors</h3>
+        <ul class="plain">
+          <li>ACM SIGMOD Travel Grant<span>2026</span></li>
+          <li>ACM CIKM Student Travel Grant<span>2025</span></li>
+          <li>National Scholarship for Graduate Studies, Ministry of Education, South Korea<span>2025 Fall – present</span></li>
+          <li>Best Paper Award (Bronze), Korea Database Conference<span>2024</span></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Patents (filed)</h3>
+        <ul class="plain">
+          <li>Discovering cohesive subhypergraphs using decay-based participation strength<span>10-2026-0096258 · May 2026</span></li>
+          <li>Network clustering based on weighted structural similarity<span>10-2026-0004498 · Jan 2026</span></li>
+          <li>Community detection for large-scale attributed networks<span>10-2025-0205480 · Dec 2025</span></li>
+          <li>Discovering cohesive subgraphs in bipartite networks<span>10-2025-0166255 · Dec 2025</span></li>
+          <li>Community detection based on Ollivier-Ricci curvature and modularity<span>10-2025-0034070 · Mar 2025</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SERVICE ============ -->
+<section class="band wrap">
+  <div class="cols">
+    <p class="eyebrow">Service</p>
+    <ul class="entries">
+      <li class="entry"><div><h4>CSE Supporters, UNIST</h4></div><span class="when">Mar 2024 – Jun 2025</span></li>
+      <li class="entry"><div><h4>Student Council Member, UNIST</h4></div><span class="when">Sep 2020 – Jun 2022</span></li>
+    </ul>
+  </div>
+</section>
+
+</main>
+
+<footer class="wrap">
+  <span>Taejoon Han · UNIST · Ulsan, South Korea</span>
+  <span>Last updated August 2026</span>
+</footer>
+
+<script>
+(function(){
+  var svg = document.getElementById('net');
+  var cap = document.getElementById('cap');
+  if(!svg) return;
+
+  // seeded PRNG so the layout is the same on every visit
+  var seed = 20260810;
+  function rnd(){ seed = (seed * 1664525 + 1013904223) % 4294967296; return seed / 4294967296; }
+
+  var LABELS = ['cohesive subgraph','dense community','k-core','bipartite core'];
+  var CENTERS = [[128,105],[315,140],[110,278],[312,282]];
+  var SIZE = [7,6,6,7];
+
+  var nodes = [], edges = [];
+  CENTERS.forEach(function(c,ci){
+    var n = SIZE[ci], first = nodes.length;
+    for(var i=0;i<n;i++){
+      var a = (i/n)*Math.PI*2 + rnd()*0.9;
+      var r = 30 + rnd()*30;
+      nodes.push({x:c[0]+Math.cos(a)*r, y:c[1]+Math.sin(a)*r*0.9, c:ci});
+    }
+    // dense within the cluster
+    for(var u=first;u<first+n;u++)
+      for(var v=u+1;v<first+n;v++)
+        if(rnd()<0.55) edges.push({a:u,b:v,c:ci});
+  });
+  // sparse bridges between clusters
+  for(var k=0;k<7;k++){
+    var a = Math.floor(rnd()*nodes.length), b = Math.floor(rnd()*nodes.length);
+    if(nodes[a].c !== nodes[b].c) edges.push({a:a,b:b,c:-1});
+  }
+
+  var NS = 'http://www.w3.org/2000/svg';
+  var eEls = edges.map(function(e){
+    var l = document.createElementNS(NS,'line');
+    l.setAttribute('x1',nodes[e.a].x.toFixed(1)); l.setAttribute('y1',nodes[e.a].y.toFixed(1));
+    l.setAttribute('x2',nodes[e.b].x.toFixed(1)); l.setAttribute('y2',nodes[e.b].y.toFixed(1));
+    l.setAttribute('class','edge'); svg.appendChild(l); return l;
+  });
+  var nEls = nodes.map(function(n){
+    var c = document.createElementNS(NS,'circle');
+    c.setAttribute('cx',n.x.toFixed(1)); c.setAttribute('cy',n.y.toFixed(1));
+    c.setAttribute('r',4.5); c.setAttribute('class','node'); svg.appendChild(c); return c;
+  });
+
+  var active = -1;
+  function highlight(i){
+    active = i;
+    nEls.forEach(function(el,idx){
+      var on = nodes[idx].c === i;
+      el.classList.toggle('on',on);
+      el.setAttribute('r', on ? 6.2 : 4.5);
+    });
+    eEls.forEach(function(el,idx){ el.classList.toggle('on', edges[idx].c === i); });
+    cap.textContent = LABELS[i];
+  }
+  highlight(0);
+
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+  if(!reduce.matches){
+    setInterval(function(){ highlight((active+1)%CENTERS.length); }, 3400);
+  }
+})();
+</script>
+</body>
+</html>
