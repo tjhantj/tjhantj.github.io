@@ -135,20 +135,21 @@ main{padding-bottom:80px}
 @media(max-width:740px){.about-grid{grid-template-columns:1fr}.photo-card{max-width:320px}}
 
 /* PUBLICATIONS */
-.pub-group + .pub-group{margin-top:48px}
-.group-label{display:flex;align-items:center;gap:14px;margin:0 0 16px;font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted)}
+.pub-group + .pub-group{margin-top:44px}
+.group-label{display:flex;align-items:center;gap:14px;margin:0 0 8px;font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted)}
 .group-label::after{content:"";height:1px;flex:1;background:var(--line)}
-.pub-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px;counter-reset:pub}
-.pub-card{counter-increment:pub;position:relative;border:1px solid var(--line);border-radius:19px;background:var(--surface);padding:20px;min-height:210px;display:flex;flex-direction:column;transition:transform .2s,border-color .2s,box-shadow .2s}
-.pub-card:hover{transform:translateY(-3px);border-color:var(--accent);box-shadow:var(--shadow)}
-.pub-card::after{content:counter(pub,decimal-leading-zero);position:absolute;right:16px;top:16px;font-family:var(--mono);font-size:10px;color:var(--muted)}
-.venue{display:inline-flex;align-self:flex-start;padding:6px 9px;border-radius:8px;background:var(--accent-soft);color:var(--accent);font-family:var(--mono);font-size:9.8px;font-weight:500;letter-spacing:.04em;text-transform:uppercase;margin-bottom:17px;max-width:calc(100% - 38px)}
-.ptitle{font-size:17px;line-height:1.42;letter-spacing:-.015em;margin:0 0 12px;font-weight:700}
+.pub-grid{display:block;counter-reset:pub}
+.pub-card{counter-increment:pub;position:relative;padding:18px 0 18px 32px;border-bottom:1px solid var(--line)}
+.pub-card:last-child{border-bottom:0;padding-bottom:0}
+.pub-card::before{content:counter(pub) ".";position:absolute;left:0;top:19px;font-family:var(--mono);font-size:12px;color:var(--muted)}
+.ptitle{font-size:16.5px;line-height:1.45;letter-spacing:-.012em;margin:0 0 6px;font-weight:700}
 .authors{margin:0;color:var(--muted);font-size:13.5px;line-height:1.6}
 .authors b{color:var(--ink);font-weight:700}
-.pub-links{display:flex;gap:12px;margin-top:auto;padding-top:16px;font-family:var(--mono);font-size:10.5px;color:var(--accent)}
-.pub-links a:hover{text-decoration:underline;text-underline-offset:3px}
-@media(max-width:760px){.pub-grid{grid-template-columns:1fr}.pub-card{min-height:auto}}
+.pub-meta{display:flex;flex-wrap:wrap;align-items:baseline;gap:5px 14px;margin:7px 0 0;font-family:var(--mono);font-size:11px}
+.venue{color:var(--accent);letter-spacing:.04em}
+.pub-links{display:inline-flex;gap:12px;color:var(--muted)}
+.pub-links a:hover{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
+@media(max-width:600px){.pub-card{padding-left:24px}}
 
 /* TIMELINES / LISTS */
 .timeline{display:grid;gap:12px}
@@ -159,20 +160,23 @@ main{padding-bottom:80px}
 .timeline-sub{margin:7px 0 0;color:var(--muted);font-size:13.5px;line-height:1.65}
 @media(max-width:600px){.timeline-item{grid-template-columns:1fr;gap:5px}.date{order:2}.timeline-title{order:1}.timeline-sub{order:3}}
 
-.card-list{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.info-card{border:1px solid var(--line);border-radius:18px;background:var(--surface);padding:18px}
-.info-card .date{margin-bottom:9px}
-.info-card .timeline-title{font-size:15px}
-.info-card .timeline-sub{font-size:13px}
-@media(max-width:700px){.card-list{grid-template-columns:1fr}}
+.card-list{display:block}
+.info-card{display:grid;grid-template-columns:150px minmax(0,1fr);gap:18px;padding:18px 0;border-bottom:1px solid var(--line)}
+.info-card:first-child{padding-top:0}
+.info-card:last-child{border-bottom:0;padding-bottom:0}
+.info-card .date{margin-bottom:0}
+.info-card .timeline-title{font-size:16px}
+.info-card .timeline-sub{font-size:13.5px}
+@media(max-width:600px){.info-card{grid-template-columns:1fr;gap:5px}.info-card .date{order:2}.info-card .timeline-title{order:1}}
 
-.education-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.degree{border:1px solid var(--line);border-radius:20px;background:var(--surface);padding:22px;position:relative;overflow:hidden}
-.degree::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--accent)}
-.degree .school{font-weight:800;font-size:17px;line-height:1.45}
-.degree .date{margin:8px 0 15px;color:var(--muted)}
-.degree .timeline-sub{margin:0}
-@media(max-width:700px){.education-grid{grid-template-columns:1fr}}
+.education-grid{display:block}
+.degree{display:grid;grid-template-columns:150px minmax(0,1fr);gap:0 18px;padding:18px 0;border-bottom:1px solid var(--line)}
+.degree:first-child{padding-top:0}
+.degree:last-child{border-bottom:0;padding-bottom:0}
+.degree .school{grid-column:2;grid-row:1;font-weight:700;font-size:16px;line-height:1.45}
+.degree .date{grid-column:1;grid-row:1;margin:0}
+.degree .timeline-sub{grid-column:2;margin:7px 0 0}
+@media(max-width:600px){.degree{grid-template-columns:1fr;gap:5px}.degree .school{grid-column:1;grid-row:1}.degree .date{grid-column:1;grid-row:2}.degree .timeline-sub{grid-column:1;margin:2px 0 0}}
 
 /* FOOTER */
 footer{border-top:1px solid var(--line);padding:32px 0 50px;color:var(--muted);font-family:var(--mono);font-size:10.5px}
@@ -260,34 +264,29 @@ footer{border-top:1px solid var(--line);padding:32px 0 50px;color:var(--muted);f
         <p class="group-label">International</p>
         <div class="pub-grid">
           <article class="pub-card">
-            <span class="venue">TKDE 2027</span>
             <h3 class="ptitle">The s-Hypercore: A Cohesive Subhypergraph Model Based on Decayed Engagement Strength</h3>
             <p class="authors">Minseok Kim, Dahee Kim, <b>Taejoon Han</b>, Junghoon Kim, Seungil Wi, and Jonghyeok Park</p>
-            <div class="pub-links"><a href="#">[Paper]</a></div>
+            <p class="pub-meta"><span class="venue">TKDE 2027</span><span class="pub-links"><a href="#">[Paper]</a></span></p>
           </article>
           <article class="pub-card">
-            <span class="venue">CIKM 2026 · Oral presentation</span>
             <h3 class="ptitle">Representation-Aware Modularity with a Distance-Calibrated Null Model</h3>
             <p class="authors"><b>Taejoon Han</b>, Dahee Kim, Junghoon Kim, Taeho Ha</p>
-            <div class="pub-links"><a href="#">[Paper]</a></div>
+            <p class="pub-meta"><span class="venue">CIKM 2026 · Oral presentation</span><span class="pub-links"><a href="#">[Paper]</a></span></p>
           </article>
           <article class="pub-card">
-            <span class="venue">SIGMOD 2026</span>
             <h3 class="ptitle">LMSC: Local Sketch Modularity Optimisation for Size-Constrained Community Search in Networks</h3>
             <p class="authors">Dahee Kim, <b>Taejoon Han</b>, Kaiyu Feng, Junghoon Kim, and Susik Yoon</p>
-            <div class="pub-links"><a href="https://dl.acm.org/doi/10.1145/3786666">[Paper]</a></div>
+            <p class="pub-meta"><span class="venue">SIGMOD 2026</span><span class="pub-links"><a href="https://dl.acm.org/doi/10.1145/3786666">[Paper]</a></span></p>
           </article>
           <article class="pub-card">
-            <span class="venue">EDBT 2026</span>
             <h3 class="ptitle">Efficient Locality-based Indexing for Cohesive Subgraphs Discovery in Hypergraph</h3>
             <p class="authors">Song Kim, Dahee Kim, <b>Taejoon Han</b>, Junghoon Kim, Hyun Ji Jeong, and Jungeun Kim</p>
-            <div class="pub-links"><a href="https://www.openproceedings.org/2026/conf/edbt/paper-61.pdf">[Paper]</a></div>
+            <p class="pub-meta"><span class="venue">EDBT 2026</span><span class="pub-links"><a href="https://www.openproceedings.org/2026/conf/edbt/paper-61.pdf">[Paper]</a></span></p>
           </article>
           <article class="pub-card">
-            <span class="venue">CIKM 2025</span>
             <h3 class="ptitle">From Bicliques to Biflexi Cliques: A New Era of Bipartite Subgraph Discovery</h3>
             <p class="authors"><b>Taejoon Han</b>*, Song Kim*, Woungjae Choo, and Junghoon Kim</p>
-            <div class="pub-links"><a href="https://dl.acm.org/doi/10.1145/3746252.3760927">[Paper]</a></div>
+            <p class="pub-meta"><span class="venue">CIKM 2025</span><span class="pub-links"><a href="https://dl.acm.org/doi/10.1145/3746252.3760927">[Paper]</a></span></p>
           </article>
         </div>
       </div>
@@ -296,30 +295,29 @@ footer{border-top:1px solid var(--line);padding:32px 0 50px;color:var(--muted);f
         <p class="group-label">Domestic</p>
         <div class="pub-grid">
           <article class="pub-card">
-            <span class="venue">KDBC 2025 · WIP</span>
             <h3 class="ptitle">NHSCAN: Node-based Hypergraph SCAN</h3>
             <p class="authors"><b>Taejoon Han</b>, Seungchan Choi, Minseok Kim, Hyewon Kim, Dahee Kim, and Junghoon Kim</p>
+            <p class="pub-meta"><span class="venue">KDBC 2025 · WIP</span></p>
           </article>
           <article class="pub-card">
-            <span class="venue">KDBC 2025 · WIP</span>
             <h3 class="ptitle">Weighted Structural Similarity for Density-Based Graph Clustering</h3>
             <p class="authors">Seungchan Choi*, <b>Taejoon Han</b>*, Dahee Kim, Hyewon Kim, Minseok Kim, and Junghoon Kim</p>
+            <p class="pub-meta"><span class="venue">KDBC 2025 · WIP</span></p>
           </article>
           <article class="pub-card">
-            <span class="venue">DBR 2025</span>
             <h3 class="ptitle">Community Detection in Large-scale Attributed Networks via Joint Structural and Attribute Modularity Maximization</h3>
             <p class="authors">Deokhyun Kim*, <b>Taejoon Han</b>*, and Junghoon Kim</p>
+            <p class="pub-meta"><span class="venue">DBR 2025</span></p>
           </article>
           <article class="pub-card">
-            <span class="venue">KDBC 2024</span>
             <h3 class="ptitle">Complex Network Stability: Exploring Comprehensive Anchored Edge s-Core</h3>
             <p class="authors"><b>Taejoon Han</b>*, Hyewon Kim*, Seongsik Hwang, Woocheol Shin, Junghoon Kim, Jaehyun Bhang, and Hyeongi Hong</p>
+            <p class="pub-meta"><span class="venue">KDBC 2024</span></p>
           </article>
           <article class="pub-card">
-            <span class="venue">KDBC 2024 · Best Paper Bronze</span>
             <h3 class="ptitle">Community Detection Based on Ollivier-Ricci Curvature and Modularity</h3>
             <p class="authors">Dahee Kim*, Hyewon Kim*, <b>Taejoon Han</b>, and Junghoon Kim</p>
-            <div class="pub-links"></div>
+            <p class="pub-meta"><span class="venue">KDBC 2024 · Best Paper Bronze</span></p>
           </article>
         </div>
       </div>
