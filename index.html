@@ -147,6 +147,12 @@ main{padding-bottom:80px}
 .authors b{color:var(--ink);font-weight:700}
 .pub-meta{display:flex;flex-wrap:wrap;align-items:baseline;gap:5px 14px;margin:7px 0 0;font-family:var(--mono);font-size:11px}
 .venue{color:var(--accent);letter-spacing:.04em}
+/* Publication venue labels, matching the screenshot's red/orange emphasis */
+.venue-rank{font-weight:700;letter-spacing:0}
+.venue-rank--cs{color:#d63c34}
+.venue-rank--db{color:#c97814}
+html[data-theme="dark"] .venue-rank--cs{color:#ff8078}
+html[data-theme="dark"] .venue-rank--db{color:#ffc16d}
 .pub-links{display:inline-flex;gap:12px;color:var(--muted)}
 .pub-links a:hover{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
 @media(max-width:600px){.pub-card{padding-left:24px}}
@@ -266,32 +272,32 @@ footer{border-top:1px solid var(--line);padding:32px 0 50px;color:var(--muted);f
           <article class="pub-card">
             <h3 class="ptitle">WSCAN++: Mutual-Support Structural Clustering for Weighted Networks</h3>
             <p class="authors"><b>Taejoon Han</b>, Seungchan Choi, Hyewon Kim, Minseok Kim, Dahee Kim, Junghoon Kim, Seungil Wi, Sungsu Lim, and Seungil Wi</p>
-            <p class="pub-meta"><span class="venue">WSDM 2027</span><span class="pub-links"><a href="#">[Paper]</a></span></p>
+            <p class="pub-meta"><span class="venue-details"><span class="venue">WSDM 2027</span> (<span class="venue-rank venue-rank--cs">CS top conference</span>) · Oral presentation</span><span class="pub-links"><a href="#">[Paper]</a></span></p>
           </article>
           <article class="pub-card">
             <h3 class="ptitle">The s-Hypercore: A Cohesive Subhypergraph Model Based on Decayed Engagement Strength</h3>
             <p class="authors">Minseok Kim, Dahee Kim, <b>Taejoon Han</b>, Junghoon Kim, Seungil Wi, and Jonghyeok Park</p>
-            <p class="pub-meta"><span class="venue">TKDE 2027</span><span class="pub-links"><a href="https://ieeexplore.ieee.org/document/11660353">[Paper]</a></span></p>
+            <p class="pub-meta"><span class="venue-details"><span class="venue">TKDE 2027</span> (<span class="venue-rank venue-rank--db">Top database journal</span>, SCIE Q1)</span><span class="pub-links"><a href="https://ieeexplore.ieee.org/document/11660353">[Paper]</a></span></p>
           </article>
           <article class="pub-card">
             <h3 class="ptitle">Representation-Aware Modularity with a Distance-Calibrated Null Model</h3>
             <p class="authors"><b>Taejoon Han</b>, Dahee Kim, Junghoon Kim, Taeho Ha</p>
-            <p class="pub-meta"><span class="venue">CIKM 2026 · Oral presentation</span><span class="pub-links"><a href="https://dl.acm.org/doi/10.1145/3799682.3840566">[Paper]</a></span></p>
+            <p class="pub-meta"><span class="venue-details"><span class="venue">CIKM 2026</span> (<span class="venue-rank venue-rank--cs">CS top conference</span>) · Oral presentation</span><span class="pub-links"><a href="https://dl.acm.org/doi/10.1145/3799682.3840566">[Paper]</a></span></p>
           </article>
           <article class="pub-card">
             <h3 class="ptitle">LMSC: Local Sketch Modularity Optimisation for Size-Constrained Community Search in Networks</h3>
             <p class="authors">Dahee Kim, <b>Taejoon Han</b>, Kaiyu Feng, Junghoon Kim, and Susik Yoon</p>
-            <p class="pub-meta"><span class="venue">SIGMOD 2026</span><span class="pub-links"><a href="https://dl.acm.org/doi/10.1145/3786666">[Paper]</a></span></p>
+            <p class="pub-meta"><span class="venue-details"><span class="venue">SIGMOD 2026</span> (<span class="venue-rank venue-rank--db">Top database conference</span>)</span><span class="pub-links"><a href="https://dl.acm.org/doi/10.1145/3786666">[Paper]</a></span></p>
           </article>
           <article class="pub-card">
             <h3 class="ptitle">Efficient Locality-based Indexing for Cohesive Subgraphs Discovery in Hypergraph</h3>
             <p class="authors">Song Kim, Dahee Kim, <b>Taejoon Han</b>, Junghoon Kim, Hyun Ji Jeong, and Jungeun Kim</p>
-            <p class="pub-meta"><span class="venue">EDBT 2026</span><span class="pub-links"><a href="https://www.openproceedings.org/2026/conf/edbt/paper-61.pdf">[Paper]</a></span></p>
+            <p class="pub-meta"><span class="venue-details"><span class="venue">EDBT 2026</span> (<span class="venue-rank venue-rank--db">Top database conference</span>)</span><span class="pub-links"><a href="https://www.openproceedings.org/2026/conf/edbt/paper-61.pdf">[Paper]</a></span></p>
           </article>
           <article class="pub-card">
             <h3 class="ptitle">From Bicliques to Biflexi Cliques: A New Era of Bipartite Subgraph Discovery</h3>
             <p class="authors"><b>Taejoon Han</b>*, Song Kim*, Woungjae Choo, and Junghoon Kim</p>
-            <p class="pub-meta"><span class="venue">CIKM 2025</span><span class="pub-links"><a href="https://dl.acm.org/doi/10.1145/3746252.3760927">[Paper]</a></span></p>
+            <p class="pub-meta"><span class="venue-details"><span class="venue">CIKM 2025</span> (<span class="venue-rank venue-rank--cs">CS top conference</span>, short paper)</span><span class="pub-links"><a href="https://dl.acm.org/doi/10.1145/3746252.3760927">[Paper]</a></span></p>
           </article>
         </div>
       </div>
