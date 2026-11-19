@@ -159,15 +159,15 @@ html[data-theme="dark"] .venue-rank--db{color:#ffc16d}
 
 /* TIMELINES / LISTS */
 .timeline{display:grid;gap:12px}
-.timeline-item{display:grid;grid-template-columns:150px minmax(0,1fr);gap:18px;padding:18px 0;border-bottom:1px solid var(--line)}
+.timeline-item{display:grid;grid-template-columns:190px minmax(0,1fr);gap:18px;padding:18px 0;border-bottom:1px solid var(--line)}
 .timeline-item:first-child{padding-top:0}
-.date{font-family:var(--mono);font-size:11px;color:var(--accent);line-height:1.55}
+.date{font-family:var(--mono);font-size:14px;color:var(--accent);line-height:1.6}
 .timeline-title{font-size:16px;font-weight:700;line-height:1.45}
 .timeline-sub{margin:7px 0 0;color:var(--muted);font-size:13.5px;line-height:1.65}
 @media(max-width:600px){.timeline-item{grid-template-columns:1fr;gap:5px}.date{order:2}.timeline-title{order:1}.timeline-sub{order:3}}
 
 .card-list{display:block}
-.info-card{display:grid;grid-template-columns:150px minmax(0,1fr);gap:18px;padding:18px 0;border-bottom:1px solid var(--line)}
+.info-card{display:grid;grid-template-columns:190px minmax(0,1fr);gap:18px;padding:18px 0;border-bottom:1px solid var(--line)}
 .info-card:first-child{padding-top:0}
 .info-card:last-child{border-bottom:0;padding-bottom:0}
 .info-card .date{margin-bottom:0}
@@ -176,7 +176,7 @@ html[data-theme="dark"] .venue-rank--db{color:#ffc16d}
 @media(max-width:600px){.info-card{grid-template-columns:1fr;gap:5px}.info-card .date{order:2}.info-card .timeline-title{order:1}}
 
 .education-grid{display:block}
-.degree{display:grid;grid-template-columns:150px minmax(0,1fr);gap:0 18px;padding:18px 0;border-bottom:1px solid var(--line)}
+.degree{display:grid;grid-template-columns:190px minmax(0,1fr);gap:0 18px;padding:18px 0;border-bottom:1px solid var(--line)}
 .degree:first-child{padding-top:0}
 .degree:last-child{border-bottom:0;padding-bottom:0}
 .degree .school{grid-column:2;grid-row:1;font-weight:700;font-size:16px;line-height:1.45}
@@ -202,6 +202,7 @@ footer{border-top:1px solid var(--line);padding:32px 0 50px;color:var(--muted);f
       <a href="#about"><span class="en">About</span><span class="ko">소개</span></a>
       <a href="#publications"><span class="en">Publications</span><span class="ko">논문</span></a>
       <a href="#awards"><span class="en">Awards</span><span class="ko">수상</span></a>
+      <a href="#academic"><span class="en">Academic Activities</span><span class="ko">학술 활동</span></a>
       <a href="#teaching"><span class="en">Teaching</span><span class="ko">강의</span></a>
       <a href="#patents"><span class="en">Patents</span><span class="ko">특허</span></a>
       <a href="#education"><span class="en">Education</span><span class="ko">학력</span></a>
@@ -368,10 +369,26 @@ footer{border-top:1px solid var(--line);padding:32px 0 50px;color:var(--muted);f
   </div>
 </section>
 
+<section class="section" id="academic">
+  <div class="shell section-grid">
+    <div class="section-side reveal">
+      <div class="section-index">04 · Service</div>
+      <h2 class="section-title"><span class="en">Academic Activities</span><span class="ko">학술 활동</span></h2>
+      <p class="section-desc"><span class="en">Reviewing and academic service</span><span class="ko">논문 심사 및 학술 봉사</span></p>
+    </div>
+    <div class="card-list reveal">
+      <article class="info-card">
+        <div class="date">Reviewer</div>
+        <div class="timeline-title">WSDM 2027 (Short Paper Track)</div>
+      </article>
+    </div>
+  </div>
+</section>
+
 <section class="section" id="teaching">
   <div class="shell section-grid">
     <div class="section-side reveal">
-      <div class="section-index">04 · Teaching</div>
+      <div class="section-index">05 · Teaching</div>
       <h2 class="section-title"><span class="en">Teaching</span><span class="ko">강의 조교</span></h2>
       <p class="section-desc"><span class="en">Teaching assistantship and industry education</span><span class="ko">강의 조교 및 산업 교육 경험</span></p>
     </div>
@@ -395,7 +412,7 @@ footer{border-top:1px solid var(--line);padding:32px 0 50px;color:var(--muted);f
 <section class="section" id="patents">
   <div class="shell section-grid">
     <div class="section-side reveal">
-      <div class="section-index">05 · IP</div>
+      <div class="section-index">06 · IP</div>
       <h2 class="section-title"><span class="en">Patents</span><span class="ko">특허</span></h2>
       <p class="section-desc"><span class="en">Filed inventions related to graph and network analysis</span><span class="ko">그래프 및 네트워크 분석 관련 출원</span></p>
     </div>
@@ -442,7 +459,7 @@ footer{border-top:1px solid var(--line);padding:32px 0 50px;color:var(--muted);f
 <section class="section" id="education">
   <div class="shell section-grid">
     <div class="section-side reveal">
-      <div class="section-index">06 · Academic</div>
+      <div class="section-index">07 · Academic</div>
       <h2 class="section-title"><span class="en">Education</span><span class="ko">학력</span></h2>
       <p class="section-desc"><span class="en">Academic background at UNIST</span><span class="ko">UNIST 학력</span></p>
     </div>
@@ -466,7 +483,7 @@ footer{border-top:1px solid var(--line);padding:32px 0 50px;color:var(--muted);f
 <section class="section" id="activities">
   <div class="shell section-grid">
     <div class="section-side reveal">
-      <div class="section-index">07 · Community</div>
+      <div class="section-index">08 · Community</div>
       <h2 class="section-title"><span class="en">Activities</span><span class="ko">활동</span></h2>
       <p class="section-desc"><span class="en">Selected university activities</span><span class="ko">주요 교내 활동</span></p>
     </div>
@@ -481,7 +498,7 @@ footer{border-top:1px solid var(--line);padding:32px 0 50px;color:var(--muted);f
 <footer>
   <div class="shell footer-row">
     <span>Taejoon Han · UNIST Data Mining Lab · Ulsan, Republic of Korea</span>
-    <span>Last updated 2026.08</span>
+    <span>Last updated 2026.11</span>
   </div>
 </footer>
 
